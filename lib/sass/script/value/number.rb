@@ -497,12 +497,12 @@ module Sass::Script::Value
         'thm'  => Rational(2.5, 2.54), # thumb, "metric inch"
         'cm'   => Rational(1, 2.54),   # centimeter
         'cc'   => Rational(36, 203.2), # cicero, Didot pica
-        'fp'   => Rational(4, 25.4),   # French point
         'pc'   => Rational(1, 6),      # pica
         'ln'   => Rational(1, 12),     # line (not line-height: 'lh')
         'sx'   => Rational(1, 16),     # sixteenth-inch, six-pixel
         'tx'   => Rational(1, 32),     # thirtysecondth-inch, three-pixel
         'mm'   => Rational(1, 25.4),   # millimeter
+        'fp'   => Rational(4, 254),    # French point
         'dd'   => Rational(3, 203.2),  # Didot point, 3/8 mm
         'dt'   => Rational(1, 67.5),   # Didot point (Mozilla)
         'pt'   => Rational(1, 72),     # point
