@@ -483,30 +483,71 @@ module Sass::Script::Value
     # it efficient to figure out whether a set of units is mutually compatible
     # and what the conversion ratio is between two units.
     #
-    # These come from http://www.w3.org/TR/2012/WD-css3-values-20120308/.
+    # These come from https://drafts.csswg.org/css-values/
+    # and https://github.com/w3c/csswg-drafts/pull/848.
     relative_sizes = [
       {
-        'in' => Rational(1),
-        'cm' => Rational(1, 2.54),
-        'pc' => Rational(1, 6),
-        'mm' => Rational(1, 25.4),
-        'q' => Rational(1, 101.6),
-        'pt' => Rational(1, 72),
-        'px' => Rational(1, 96)
+        'm'    => Rational(100, 2.54), # meter
+        'yd'   => Rational(36),        # yard
+        'ft'   => Rational(12),        # foot
+        'mdl'  => Rational(30, 2.54),  # module, "metric foot"
+        'hd'   => Rational(4),         # hand
+        'dm'   => Rational(1, 2.54),   # decimeter
+        'in'   => Rational(1),         # inch
+        'thm'  => Rational(2.5, 2.54), # thumb, "metric inch"
+        'cm'   => Rational(1, 2.54),   # centimeter
+        'cc'   => Rational(36, 203.2), # cicero, Didot pica
+        'fp'   => Rational(4, 25.4),   # French point
+        'pc'   => Rational(1, 6),      # pica
+        'ln'   => Rational(1, 12),     # line (not line-height: 'lh')
+        'sx'   => Rational(1, 16),     # sixteenth-inch, six-pixel
+        'tx'   => Rational(1, 32),     # thirtysecondth-inch, three-pixel
+        'mm'   => Rational(1, 25.4),   # millimeter
+        'dd'   => Rational(3, 203.2),  # Didot point, 3/8 mm
+        'dt'   => Rational(1, 67.5),   # Didot point (Mozilla)
+        'pt'   => Rational(1, 72),     # point
+        'tex'  => Rational(1, 72.27),  # Tex/Hawks point
+        'ata'  => Rational(83, 6000),  # ATA/Johnson point
+        'px'   => Rational(1, 96),     # pixel
+        'q'    => Rational(1, 101.6),  # quarter-millimeter
+        'thou' => Rational(1, 1000),   # thousandth-inch
+        'twip' => Rational(1, 1440),   # twentieth-point
+        'mu'   => Rational(1, 25400),  # micrometer, "micron"
+        'dot'  => Rational(1, 1440 * 101.6),
+        'emu'  => Rational(1, 914400)  # English Metric Unit (Office Open XML)
       },
       {
-        'deg'  => Rational(1, 360),
-        'grad' => Rational(1, 400),
-        'rad'  => Rational(1, 2 * Math::PI),
-        'turn' => Rational(1)
+        'turn' => Rational(1),         # tau, cycle
+        'pi'   => Rational(1, 2),      # pi, half-cycle
+        'rad'  => Rational(1, 2 * Math::PI), # radian
+        'clock'=> Rational(1, 12),     # 
+        'hour' => Rational(1, 24),     # 
+        'dir'  => Rational(1, 32),     # compass point, wind direction
+        'brad' => Rational(1, 256),    # binary degree, binary radian
+        'deg'  => Rational(1, 360),    # degree, °
+        'grad' => Rational(1, 400),    # grad, gradian, gon
+        'mrad' => Rational(1, 2000 * Math::PI), # milliradian
+        'mil'  => Rational(1, 6400),   # approximated mrad to fit with dir
+        'moa'  => Rational(1, 21600),  # minute of arc, '
+        'soa'  => Rational(1, 1296000) # second of arc, "
       },
       {
-        's'  => Rational(1),
-        'ms' => Rational(1, 1000)
+        'h'   => Rational(3600),       # hour
+        'ks'  => Rational(1000),       # kilosecond
+        'hs'  => Rational(100),        # hectosecond
+        'mom' => Rational(90),         # perceived moment
+        'min' => Rational(60),         # minute
+        'das' => Rational(10),         # dekasecond
+        'now' => Rational(3),          # perceived instant
+        's'   => Rational(1),          # second
+        'ds'  => Rational(1, 10),      # decisecond
+        'cs'  => Rational(1, 100),     # centisecond
+        'ms'  => Rational(1, 1000)     # millisecond
       },
       {
+        'kHz' => Rational(1000),
         'Hz'  => Rational(1),
-        'kHz' => Rational(1000)
+        'bpm' => Rational(1, 60)
       },
       {
         'dpi'  => Rational(1),
